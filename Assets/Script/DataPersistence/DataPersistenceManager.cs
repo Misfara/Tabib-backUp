@@ -5,8 +5,12 @@ using System.Linq;
 
 public class DataPersistenceManager : MonoBehaviour
 {
+    [Header("File Storage Config")]
+    [SerializeField] private string fileName;
+    [SerializeField] private bool useEncryption;
     private GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;
+    private FileDataHandler dataHandler;
     public static DataPersistenceManager instance { get; private set; }
 
     private void Awake() 
@@ -20,6 +24,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     private void Start() 
     {
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
         this.dataPersistenceObjects = FindAlldataPersistenceObjects();
         LoadGame();    
     }
@@ -31,7 +36,9 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void LoadGame()
     {
-        //TODO - Load any saved data from a file using the data handler
+        //Load any saved data from a file using the data handler
+        this.gameData = dataHandler.Load();
+
         //if no data can be loaded, initialize to a new game
         if (this.gameData == null)
         {
@@ -44,7 +51,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.LoadData(gameData);
         }
-        Debug.Log("Loaded Name is = " + gameData.textBox);
+        // Debug.Log("Loaded Health count = " + gameData.currentHealth);
     }
 
     public void SaveGame()
@@ -55,8 +62,10 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.SaveData(ref gameData);
         }
 
-        Debug.Log("Saved Name is = " + gameData.textBox);
-        //TODO - save that data to a file using the data handler
+        // Debug.Log("Saved Health count = " + gameData.currentHealth);
+        
+        //save that data to a file using the data handler
+        dataHandler.Save(gameData);
     }
 
     private void OnApplicationQuit() 

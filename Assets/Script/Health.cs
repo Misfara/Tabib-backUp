@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, IDataPersistence
 {
     public float delay = 1.5f;
     
@@ -36,9 +36,17 @@ public void Awake(){
     agent = GetComponent<Agent>();
      begalHealth =GameObject.FindGameObjectWithTag("Enemy").GetComponent<BegalHealth>();
      healthAnimation = GameObject.FindGameObjectWithTag("HealthUI").GetComponent<healthAnimation>();
-}
+    }
 
+    public void LoadData(GameData data)
+    {
+        this.currentHealth = data.currentHealth;
+    }
 
+    public void SaveData(ref GameData data)
+    {
+        data.currentHealth = this.currentHealth;
+    }
 
     public void InitializeHealth(int healthValue){
         currentHealth = healthValue;

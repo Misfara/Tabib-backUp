@@ -32,15 +32,11 @@ public class NewBehaviourScript : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
         AudioManager.Instance.musicSource.Stop();
         AudioManager.Instance.PlaySFX("Button");
-
-        DataPersistenceManager.instance.NewGame();
     }
 
     public void LoadGame(){
         SceneManager.LoadScene("LoadGame");
         AudioManager.Instance.PlaySFX("Button");
-        
-        DataPersistenceManager.instance.LoadGame();
     }
 
     public void OptionClicked()
@@ -108,8 +104,8 @@ public class NewBehaviourScript : MonoBehaviour
         AudioManager.Instance.PlaySFX("Button");
     }
 
-    public void SaveGameClicked()
-    {
-        DataPersistenceManager.instance.SaveGame();
-    }
+    // public void SaveGameClicked()
+    // {
+    //     DataPersistenceManager.instance.SaveGame();
+    // }
 }

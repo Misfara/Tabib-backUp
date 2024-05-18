@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using Unity.PlasticSCM.Editor.WebApi;
 
-public class AgentMover : MonoBehaviour
+public class AgentMover : MonoBehaviour, IDataPersistence
 {
 
     float HAxis,ZAxis;
@@ -42,6 +42,15 @@ public class AgentMover : MonoBehaviour
         tr= GetComponentInChildren<TrailRenderer>();
     }
 
+    public void LoadData(GameData data)
+    {
+        this.transform.position = data.playerPosition;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.playerPosition = this.transform.position;
+    }
   
 
     
