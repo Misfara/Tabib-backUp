@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TargetDetector : Detector
 {
-    [SerializeField]
-    private float targetDetectionRange = 5;
+    public float targetDetectionRange = 4.5f;
+    Animator animator;
 
     [SerializeField]
     private LayerMask obstaclesLayerMask, playerLayerMask;
@@ -15,6 +15,8 @@ public class TargetDetector : Detector
 
     //gizmo parameters
     private List<Transform> colliders;
+
+    
 
     public override void Detect(AIData aiData)
     {
@@ -34,6 +36,7 @@ public class TargetDetector : Detector
             {
                 Debug.DrawRay(transform.position, direction * targetDetectionRange, Color.magenta);
                 colliders = new List<Transform>() { playerCollider.transform };
+                  
             }
             else
             {

@@ -7,9 +7,9 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     public UnityEvent<Vector2>OnMovementInput,OnPointerInput;
-    public UnityEvent OnAttack,OnDash,OnInteract;
+    public UnityEvent OnAttack,OnDash,OnInteract,OnRecipeBook;
 
-    [SerializeField] private InputActionReference movement, attack , pointerPosition,dash,interact;
+    [SerializeField] private InputActionReference movement, attack , pointerPosition,dash,interact,recipeBook;
 
     private void Update(){
         OnMovementInput?.Invoke(movement.action.ReadValue<Vector2>().normalized);
@@ -26,12 +26,14 @@ public class PlayerInput : MonoBehaviour
         attack.action.performed += PerformAttack;
         dash.action.performed += PerformDash;
         interact.action.performed += PerformInteract;
+        recipeBook.action.performed += PerformRecipeBook;
     }
 
     private void OnDisable(){
         attack.action.performed -= PerformAttack;
         dash.action.performed -= PerformDash;
         interact.action.performed -= PerformInteract;
+        recipeBook.action.performed -= PerformRecipeBook;
     }
 
     private void PerformAttack(InputAction.CallbackContext obj){
@@ -44,6 +46,10 @@ public class PlayerInput : MonoBehaviour
 
     public void PerformInteract(InputAction.CallbackContext obj){
         OnInteract?.Invoke();
+    }
+
+    public void PerformRecipeBook(InputAction.CallbackContext obj){
+        OnRecipeBook?.Invoke();
     }
 
 }

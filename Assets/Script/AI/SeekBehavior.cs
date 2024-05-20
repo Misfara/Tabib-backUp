@@ -16,6 +16,7 @@ public class SeekBehaviour : SteeringBehaviour
     //gizmo parameters
     private Vector2 targetPositionCached;
     private float[] interestsTemp;
+    
 
     public override (float[] danger, float[] interest) GetSteering(float[] danger, float[] interest, AIData aiData)
     {

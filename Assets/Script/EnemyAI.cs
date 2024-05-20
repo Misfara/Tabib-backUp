@@ -31,7 +31,7 @@ public class EnemyAI : MonoBehaviour
 
    BegalHealth begalHealth;
 
-   [SerializeField] private float chaseDistanceThreshold =3 , attackDistanceThreshold = 1f;
+    public float chaseDistanceThreshold =0 , attackDistanceThreshold = 1.5f;
 
    [SerializeField] private float attackDelay = 1;
    private float passedTime =1;
@@ -53,7 +53,7 @@ public class EnemyAI : MonoBehaviour
     
     if(player == null){
         OnMovementInput?.Invoke(Vector2.zero);
-        animator.SetBool("Moving",false);
+       
             return;
     }
         float distance = Vector2.Distance(player.position,transform.position);
@@ -76,7 +76,7 @@ public class EnemyAI : MonoBehaviour
                     OnMovementInput?.Invoke(direction.normalized);
             }
         }else{
-            animator.SetBool("Moving",false);
+            
         }
         if(passedTime<attackDelay){
             passedTime += Time.deltaTime;

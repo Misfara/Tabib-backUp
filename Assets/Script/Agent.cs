@@ -29,6 +29,8 @@ float ZAxis;
 
 Health health;
 
+LookingAtRecipeBook lookingAtRecipeBook;
+
 
 Animator animator;
 
@@ -50,7 +52,7 @@ TrailRenderer tr;
         animator= GetComponent<Animator>();
         health = GetComponent<Health>();
         playerInteraction = GetComponent<PlayerInteraction>();
-
+        lookingAtRecipeBook = GetComponent<LookingAtRecipeBook>();
      
 
     }
@@ -85,6 +87,10 @@ public void PerformAttack(){
 
     public void PerformInteract(){
         playerInteraction.Update();
+    }
+
+    public void PerformRecipeBook(){
+        lookingAtRecipeBook.Update();
     }
     
 

@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour, IDataPersistence
+public class Health : MonoBehaviour
 {
-    public float delay = 1.5f;
+    public float delay = 2f;
+    public GameObject DeathPanel;
+
     
     public int damage = 2;
 
@@ -27,7 +29,11 @@ public class Health : MonoBehaviour, IDataPersistence
 
     healthAnimation healthAnimation;
 
-    
+    private CanvasGroup deathPanelCanvasGroup;
+
+    float Wait = 0.0f;
+
+    Animation anima;
 
 public void Awake(){
     animator= GetComponent<Animator>();
@@ -36,17 +42,12 @@ public void Awake(){
     agent = GetComponent<Agent>();
      begalHealth =GameObject.FindGameObjectWithTag("Enemy").GetComponent<BegalHealth>();
      healthAnimation = GameObject.FindGameObjectWithTag("HealthUI").GetComponent<healthAnimation>();
-    }
+    deathPanelCanvasGroup = DeathPanel.GetComponent<CanvasGroup>();
+    anima = GetComponent<Animation>();
+    
+}
 
-    public void LoadData(GameData data)
-    {
-        this.currentHealth = data.currentHealth;
-    }
 
-    public void SaveData(ref GameData data)
-    {
-        data.currentHealth = this.currentHealth;
-    }
 
     public void InitializeHealth(int healthValue){
         currentHealth = healthValue;
@@ -84,7 +85,10 @@ public void Awake(){
         animator.SetTrigger("Death");
         isDead =true;
         yield return new  WaitForSeconds(delay);
-        Destroy(gameObject);
+      
+     
+        StartCoroutine(FadeInDeathPanel());
+       
     }
 
     public void AddHealth(int healthBoost = 2)
@@ -94,5 +98,26 @@ public void Awake(){
         currentHealth = val ;
     }
 
+public IEnumerator FadeInDeathPanel()
+{
+    DeathPanel.SetActive(true);
+    deathPanelCanvasGroup.alpha = 0;
+
+    float duration = 1f;
+    float elapsedTime = 0;
+
+    while (elapsedTime < duration)
+    {
+        elapsedTime += Time.deltaTime;
+        deathPanelCanvasGroup.alpha = Mathf.Clamp01(elapsedTime / duration);
+      
+        yield return null;
+    }
+
+    deathPanelCanvasGroup.alpha = 1;
+  
+       Destroy(gameObject);
+}
+     
    
 }

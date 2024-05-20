@@ -31,6 +31,8 @@ public class EnemyBehavior : MonoBehaviour
 
     Rigidbody2D rb;
 
+    AgentMover agentMover;
+
     
 
     [SerializeField]
@@ -38,13 +40,21 @@ public class EnemyBehavior : MonoBehaviour
 
     bool following = false;
 
+    bool canChase = false;
+
+    Animator animator;
+    
+    EnemyArea enemyArea;
+
     private void Start()
     {
         //Detecting Player and Obstacles around
         InvokeRepeating("PerformDetection", 0, detectionDelay);
        begalHealth = GetComponent<BegalHealth>();
         rb=GetComponent<Rigidbody2D>();
-        
+        agentMover = GetComponent<AgentMover>();
+       enemyArea= GameObject.FindGameObjectWithTag("EnemyThreshold").GetComponent<EnemyArea>();
+       animator = GetComponent<Animator>();
     }
 
     private void PerformDetection()
@@ -82,17 +92,17 @@ public class EnemyBehavior : MonoBehaviour
         
         if (aiData.currentTarget == null)
         {
-            //Stopping Logic
-            Debug.Log("Stopping");
+            
             movementInput = Vector2.zero;
             following = false;
+              animator.SetBool("Moving",false);
             yield break;
         }
         else
         {
             float distance = Vector2.Distance(aiData.currentTarget.position, transform.position);
 
-            if (distance < attackDistance)
+            if (distance < attackDistance && canChase)
             {
                 //Attack logic
                 movementInput = Vector2.zero;
@@ -104,6 +114,7 @@ public class EnemyBehavior : MonoBehaviour
             {
                 //Chase logic
                 movementInput = movementDirectionSolver.GetDirectionToMove(steeringBehaviours, aiData);
+                animator.SetBool("Moving",true);
                 yield return new WaitForSeconds(aiUpdateDelay);
                 StartCoroutine(ChaseAndAttack());
             }
@@ -112,4 +123,6 @@ public class EnemyBehavior : MonoBehaviour
         
 
     }
+
+   
 }
