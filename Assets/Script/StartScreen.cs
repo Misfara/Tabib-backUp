@@ -31,6 +31,7 @@ public class NewBehaviourScript : MonoBehaviour
         StartCoroutine(LoadScene_Coroutine(index));
         SceneManager.LoadScene("SampleScene");
         AudioManager.Instance.musicSource.Stop();
+        AudioManager.Instance.PlayMusic("Game");
         AudioManager.Instance.PlaySFX("Button");
     }
 
