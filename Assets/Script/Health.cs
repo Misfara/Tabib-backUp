@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, IDataPersistence
 {
     public float delay = 2f;
     public GameObject DeathPanel;
 
-    
     public int damage = 2;
 
      public int currentHealth=2,maxHealth = 3;
@@ -35,89 +34,94 @@ public class Health : MonoBehaviour
 
     Animation anima;
 
-public void Awake(){
-    animator= GetComponent<Animator>();
-    rb = GetComponent<Rigidbody2D>();
-    capsuleCollider2D=GetComponent<CapsuleCollider2D>();
-    agent = GetComponent<Agent>();
-     begalHealth =GameObject.FindGameObjectWithTag("Enemy").GetComponent<BegalHealth>();
-     healthAnimation = GameObject.FindGameObjectWithTag("HealthUI").GetComponent<healthAnimation>();
-    deathPanelCanvasGroup = DeathPanel.GetComponent<CanvasGroup>();
-    anima = GetComponent<Animation>();
-    
-}
+    public void Awake()
+    {
+        animator= GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        capsuleCollider2D=GetComponent<CapsuleCollider2D>();
+        agent = GetComponent<Agent>();
+        begalHealth =GameObject.FindGameObjectWithTag("Enemy").GetComponent<BegalHealth>();
+        healthAnimation = GameObject.FindGameObjectWithTag("HealthUI").GetComponent<healthAnimation>();
+        deathPanelCanvasGroup = DeathPanel.GetComponent<CanvasGroup>();
+        anima = GetComponent<Animation>();
+    }
 
+    //Connect to GameData and Data Persistence for saved game health 
+    public void LoadData(GameData data)
+    {
+        this.currentHealth = data.currentHealth;
+    }
 
+    public void SaveData(ref GameData data)
+    {
+        data.currentHealth = this. currentHealth;
+    }
 
-    public void InitializeHealth(int healthValue){
+    public void InitializeHealth(int healthValue)
+    {
         currentHealth = healthValue;
         maxHealth = healthValue;
         isDead= false;
     }
 
     public void GetHit(int amount,GameObject sender)
-    {   if(isDead)
+    {   
+        if(isDead)
         return;
         if(sender.layer == gameObject.layer)
         return;
 
        currentHealth = currentHealth - begalHealth.damage;
     
-       
-
-        if(currentHealth >0 ){
-            OnHitWithReference?.Invoke(sender);
-            
-            
-            
-        }else{
+        if(currentHealth >0 )
+        {
+            OnHitWithReference?.Invoke(sender);   
+        }
+        else
+        {
             StopAllCoroutines();
             rb.velocity = new UnityEngine.Vector3 (0,0);
             OnDeathWithReference?.Invoke(sender);
             StartCoroutine(Death());
-            
         }
 
     }     
 
-    public IEnumerator Death(){
-     
+    public IEnumerator Death()
+    {
         animator.SetTrigger("Death");
         isDead =true;
         yield return new  WaitForSeconds(delay);
-      
-     
-        StartCoroutine(FadeInDeathPanel());
        
+        StartCoroutine(FadeInDeathPanel());
     }
 
     public void AddHealth(int healthBoost = 2)
     {
-        
         int val = currentHealth+ healthBoost;
         currentHealth = val ;
     }
 
-public IEnumerator FadeInDeathPanel()
-{
-    DeathPanel.SetActive(true);
-    deathPanelCanvasGroup.alpha = 0;
-
-    float duration = 1f;
-    float elapsedTime = 0;
-
-    while (elapsedTime < duration)
+    public IEnumerator FadeInDeathPanel()
     {
-        elapsedTime += Time.deltaTime;
-        deathPanelCanvasGroup.alpha = Mathf.Clamp01(elapsedTime / duration);
-      
-        yield return null;
-    }
+        DeathPanel.SetActive(true);
+        deathPanelCanvasGroup.alpha = 0;
 
-    deathPanelCanvasGroup.alpha = 1;
+        float duration = 1f;
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            deathPanelCanvasGroup.alpha = Mathf.Clamp01(elapsedTime / duration);
+      
+            yield return null;
+        }
+
+        deathPanelCanvasGroup.alpha = 1;
   
-       Destroy(gameObject);
-}
+        Destroy(gameObject);
+    }
      
    
 }

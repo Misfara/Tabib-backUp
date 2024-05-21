@@ -46,7 +46,13 @@ public class PauseSetting : MonoBehaviour
         AudioManager.Instance.musicSource.Stop();
         AudioManager.Instance.PlayMusic("Theme");
         AudioManager.Instance.PlaySFX("Button");
+    }
 
+    public void RetryGame()
+    {
+        SceneManager.LoadScene("SampleScene");
+        AudioManager.Instance.PlayMusic("Game");
+        AudioManager.Instance.PlaySFX("Button");
     }
 
 

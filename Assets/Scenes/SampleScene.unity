@@ -14422,7 +14422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea46980bce587e4ba796ce6b6bada87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: data.tabib
+  fileName: tabib.BackUp
   useEncryption: 1
 --- !u!1 &1915897232
 GameObject:
@@ -16209,6 +16209,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2634536883077524778, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634536883077524778, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634536883077524778, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 476330200}
+    - target: {fileID: 2634536883077524778, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634536883077524778, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634536883077524778, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseSetting, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634536883077524778, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4447233164771509308, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
       propertyPath: m_Color.a
       value: 0.7529412
@@ -16220,6 +16248,34 @@ PrefabInstance:
     - target: {fileID: 8258591900364252428, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
       propertyPath: m_TagString
       value: DeathPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071967805686283445, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071967805686283445, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071967805686283445, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 476330200}
+    - target: {fileID: 9071967805686283445, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071967805686283445, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RetryGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071967805686283445, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseSetting, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071967805686283445, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2687010951477972734, guid: adef595eb834a9c4b8ea0074f4addff3, type: 3}

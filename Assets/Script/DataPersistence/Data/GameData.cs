@@ -16,7 +16,7 @@ public class GameData
     
     public GameData()
     {
-        this.currentHealth = 3;
+        this.currentHealth = currentHealth;
         playerPosition = Vector3.zero;
         itemButton = new SerializableDictionary<string, bool>();
         this.textBox = "";

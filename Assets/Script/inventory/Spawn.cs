@@ -11,15 +11,18 @@ public class Spawn : MonoBehaviour
    
    
 
-   public void Start(){
+   public void Start()
+   {
     player =GameObject.FindGameObjectWithTag("Player").transform;
     agent = GetComponent<Agent>();
     gameObject.tag="Potion";
     
 
    }
-   public void SpawnDroppedItem(){
+   public void SpawnDroppedItem()
+   {
     Vector2 playerPos= new Vector2(player.position.x, player.position.y - 1.5f);
     Instantiate(item,playerPos,Quaternion.identity); 
    }
+   
 }

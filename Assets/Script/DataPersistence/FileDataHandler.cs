@@ -84,7 +84,7 @@ public class FileDataHandler
         }
         catch (Exception e)
         {
-            Debug.Log("Error accured when trying to save data to file: " + fullPath + "\n" + e);
+            Debug.LogError("Error accured when trying to save data to file: " + fullPath + "\n" + e);
         }
     }
 
