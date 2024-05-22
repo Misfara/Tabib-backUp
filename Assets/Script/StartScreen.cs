@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class NewBehaviourScript : MonoBehaviour
+public class StartScreen : MonoBehaviour
 {
     public GameObject LoadingScreen;
     public Slider progressSlider;
@@ -12,22 +12,10 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject Option;
     public GameObject settingPanel;
     public GameObject instructionPanel;
-    // public GameObject PlayerName;
 
         //START MENU//
     public void StartGame(int index)
     {
-        // if (PlayerName.activeInHierarchy == false)
-        // {
-        //     PlayerName.SetActive(true);
-        //     AudioManager.Instance.PlaySFX("Button");
-        // }
-        // else
-        // {
-        //     PlayerName.SetActive(false);
-        //     AudioManager.Instance.PlaySFX("Button");
-        // }
-        // PlayerName.SetActive(true);
         StartCoroutine(LoadScene_Coroutine(index));
         SceneManager.LoadScene("SampleScene");
         AudioManager.Instance.musicSource.Stop();

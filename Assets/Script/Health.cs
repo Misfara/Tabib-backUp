@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour, IDataPersistence
+public class Health : MonoBehaviour//, IDataPersistence
 {
     public float delay = 2f;
     public GameObject DeathPanel;
@@ -47,15 +47,15 @@ public class Health : MonoBehaviour, IDataPersistence
     }
 
     //Connect to GameData and Data Persistence for saved game health 
-    public void LoadData(GameData data)
-    {
-        this.currentHealth = data.currentHealth;
-    }
+    // public void LoadData(GameData data)
+    // {
+    //     this.currentHealth = data.currentHealth;
+    // }
 
-    public void SaveData(ref GameData data)
-    {
-        data.currentHealth = this. currentHealth;
-    }
+    // public void SaveData(ref GameData data)
+    // {
+    //     data.currentHealth = this. currentHealth;
+    // }
 
     public void InitializeHealth(int healthValue)
     {
