@@ -54,6 +54,20 @@ MonoBehaviour:
   sfxSounds:
   - name: Button
     clip: {fileID: 8300000, guid: ee4170fa5ad3c5a4d99781b3c352b489, type: 3}
+  - name: Attack Bandit
+    clip: {fileID: 8300000, guid: 1cc7303b8762a1c4ab845983df174f19, type: 3}
+  - name: Attack Tabib
+    clip: {fileID: 8300000, guid: bf8c2cde3fa6eb04e917a71f58ba8b89, type: 3}
+  - name: Got Trapped
+    clip: {fileID: 8300000, guid: 60a31a3f2eb79764db74709b94e32bc0, type: 3}
+  - name: Level Up
+    clip: {fileID: 8300000, guid: ae5fb286bfff35749876effd49f09379, type: 3}
+  - name: Pick Up Item
+    clip: {fileID: 8300000, guid: a01cdf2ae8981c241a3b86004c252347, type: 3}
+  - name: Running
+    clip: {fileID: 8300000, guid: 53437d38cbe96fe4aa5d322df79f9e10, type: 3}
+  - name: Dash
+    clip: {fileID: 8300000, guid: c699899dd431b364aa12c6cfcd77895e, type: 3}
   musicSource: {fileID: 4334175612107121963}
   sfxSource: {fileID: 707739399473966564}
   sfxOn: {fileID: 0}
@@ -104,7 +118,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -231,8 +245,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

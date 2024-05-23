@@ -11,44 +11,54 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] private InputActionReference movement, attack , pointerPosition,dash,interact,recipeBook;
 
-    private void Update(){
+    private void Update()
+    {
         OnMovementInput?.Invoke(movement.action.ReadValue<Vector2>().normalized);
         OnPointerInput?.Invoke(GetPointerInput());
     }
 
-    private Vector2 GetPointerInput(){
+    private Vector2 GetPointerInput()
+    {
         Vector3 mousePos= pointerPosition.action.ReadValue<Vector2>();
         mousePos.z = Camera.main.nearClipPlane;
         return Camera.main.ScreenToWorldPoint(mousePos);
     }
 
-    private void OnEnable(){
+    private void OnEnable()
+    {
         attack.action.performed += PerformAttack;
         dash.action.performed += PerformDash;
         interact.action.performed += PerformInteract;
         recipeBook.action.performed += PerformRecipeBook;
     }
 
-    private void OnDisable(){
+    private void OnDisable()
+    {
         attack.action.performed -= PerformAttack;
         dash.action.performed -= PerformDash;
         interact.action.performed -= PerformInteract;
         recipeBook.action.performed -= PerformRecipeBook;
     }
 
-    private void PerformAttack(InputAction.CallbackContext obj){
+    private void PerformAttack(InputAction.CallbackContext obj)
+    {
         OnAttack?.Invoke();
+        AudioManager.Instance.PlaySFX("Attack Tabib");
     }
 
-     private void PerformDash(InputAction.CallbackContext obj){
+    private void PerformDash(InputAction.CallbackContext obj)
+    {
         OnDash?.Invoke();
+        AudioManager.Instance.PlaySFX("Dash");
     }
 
-    public void PerformInteract(InputAction.CallbackContext obj){
+    public void PerformInteract(InputAction.CallbackContext obj)
+    {
         OnInteract?.Invoke();
     }
 
-    public void PerformRecipeBook(InputAction.CallbackContext obj){
+    public void PerformRecipeBook(InputAction.CallbackContext obj)
+    {
         OnRecipeBook?.Invoke();
     }
 

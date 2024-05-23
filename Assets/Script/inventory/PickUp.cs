@@ -23,7 +23,8 @@ public class PickUp : MonoBehaviour//, IDataPersistence
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player")){
+        if(other.CompareTag("Player"))
+        {
             for ( int i= 0 ; i <inventory.slots.Length;i++)
             {
                 if(inventory.isFull[i]== false)
@@ -34,6 +35,7 @@ public class PickUp : MonoBehaviour//, IDataPersistence
                     break;
                 }
             }
+            AudioManager.Instance.PlaySFX("Pick Up Item");
         }
     }
     // public void LoadData(GameData data)

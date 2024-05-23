@@ -15,7 +15,8 @@ public class PlayerKnockback : MonoBehaviour//, IDataPersistence
 
     public UnityEvent OnBegin,OnDone;
 
-    public void Awake(){
+    public void Awake()
+    {
         animator = GetComponent<Animator>();
         health=GetComponent<Health>();
     }
@@ -31,7 +32,8 @@ public class PlayerKnockback : MonoBehaviour//, IDataPersistence
     //     data.playerPosition = this.transform.position;
     // }
 
-    public void PlayFeedback(GameObject sender){
+    public void PlayFeedback(GameObject sender)
+    {
         StopAllCoroutines();
         OnBegin?.Invoke();
         animator.SetBool("GettingHit",true);
@@ -40,7 +42,8 @@ public class PlayerKnockback : MonoBehaviour//, IDataPersistence
         StartCoroutine(Reset());
     }
 
-    private IEnumerator Reset(){
+    private IEnumerator Reset()
+    {
         yield return new  WaitForSeconds(delay);
         rb.velocity = UnityEngine.Vector3.zero;
         animator.SetBool("GettingHit",false);
@@ -48,16 +51,18 @@ public class PlayerKnockback : MonoBehaviour//, IDataPersistence
 
     }
 
-    private void OnTriggerEnter2D(Collider2D sender){
+    private void OnTriggerEnter2D(Collider2D sender)
+    {
         float push=5;
-        if(sender.tag == "Enemy" && health.isDead == false){
-             StopAllCoroutines();
-        OnBegin?.Invoke();
-        animator.SetBool("GettingHit",true);
+        if(sender.tag == "Enemy" && health.isDead == false)
+        {
+            StopAllCoroutines();
+            OnBegin?.Invoke();
+            animator.SetBool("GettingHit",true);
         
-        UnityEngine.Vector2 direction = (transform.position - sender.transform.position).normalized;
-        rb.AddForce(direction*push,ForceMode2D.Impulse);
-        StartCoroutine(Reset());
+            UnityEngine.Vector2 direction = (transform.position - sender.transform.position).normalized;
+            rb.AddForce(direction*push,ForceMode2D.Impulse);
+            StartCoroutine(Reset());
         }
     }
     

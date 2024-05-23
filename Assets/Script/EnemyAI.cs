@@ -9,7 +9,8 @@ public class EnemyAI : MonoBehaviour
 {
     float HAxis,ZAxis;
     PlayerKnockback playerKnockback;
-    private enum State {
+    private enum State
+    {
         Roaming, 
         Attacking
     }
@@ -27,84 +28,98 @@ public class EnemyAI : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
 
-   [SerializeField] private Transform player;
+    [SerializeField] private Transform player;
 
-   BegalHealth begalHealth;
+    BegalHealth begalHealth;
 
     public float chaseDistanceThreshold =0 , attackDistanceThreshold = 1.5f;
 
-   [SerializeField] private float attackDelay = 1;
-   private float passedTime =1;
+    [SerializeField] private float attackDelay = 1;
+    private float passedTime =1;
 
-   private void Awake(){
+    private void Awake()
+    {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         state = State.Roaming;
         begalHealth=GetComponent<BegalHealth>();
         playerKnockback= GetComponent<PlayerKnockback>();
-   }
+    }
 
-    private void Start() {
+    private void Start()
+    {
         roamPosition = GetRoamingPosition();
     }
 
-   private void Update(){
-
-    
-    if(player == null){
-        OnMovementInput?.Invoke(Vector2.zero);
+    private void Update()
+    {
+        if(player == null)
+        {
+            OnMovementInput?.Invoke(Vector2.zero);
        
             return;
-    }
+        }
         float distance = Vector2.Distance(player.position,transform.position);
         Facing();
 
-        if(distance < chaseDistanceThreshold){
+        if(distance < chaseDistanceThreshold)
+        {
             OnPointerInput?.Invoke(player.position);
             
-            if(distance<= attackDistanceThreshold ){
-                    OnMovementInput?.Invoke(Vector2.zero);
+            if(distance<= attackDistanceThreshold )
+            {
+                OnMovementInput?.Invoke(Vector2.zero);
 
-                    if(passedTime >= attackDelay ){
-
-                        passedTime = 0;
-                        OnAttack?.Invoke();
-                    }
-            }else{
-                    Vector2 direction = player.position - transform.position;
-                    animator.SetBool("Moving",true);
-                    OnMovementInput?.Invoke(direction.normalized);
+                if(passedTime >= attackDelay )
+                {
+                    passedTime = 0;
+                    OnAttack?.Invoke();
+                    AudioManager.Instance.PlaySFX("Attack Bandit");
+                }
             }
-        }else{
+            else
+            {
+                Vector2 direction = player.position - transform.position;
+                animator.SetBool("Moving",true);
+                OnMovementInput?.Invoke(direction.normalized);
+            }
+        }
+        else
+        {
             
         }
-        if(passedTime<attackDelay){
+        
+        if(passedTime<attackDelay)
+        {
             passedTime += Time.deltaTime;
         }
         if(distance > chaseDistanceThreshold)
         {
             OnMovementInput?.Invoke(Vector2.zero);
-            GetRoamingPosition();
-            
+            GetRoamingPosition();    
         }
        
-   }
+    }
 
 
-    public Vector2 GetRoamingPosition() {
+    public Vector2 GetRoamingPosition() 
+    {
         timeRoaming = 0f;
         return new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
     }
    
 
-   private void Facing (){
-    float distance = Vector2.Distance(player.position,transform.position);
+    private void Facing ()
+    {
+        float distance = Vector2.Distance(player.position,transform.position);
     
-       if( player.position.x < thisGameObject.position.x && distance < chaseDistanceThreshold){
+        if( player.position.x < thisGameObject.position.x && distance < chaseDistanceThreshold)
+        {
             spriteRenderer.flipX = enabled;
-       }
-       if( player.position.x > thisGameObject.position.x && distance < chaseDistanceThreshold ){
+        }
+        if( player.position.x > thisGameObject.position.x && distance < chaseDistanceThreshold )
+        {
             spriteRenderer.flipX = false;
-       }
-   }
+        }
+    }
 }
