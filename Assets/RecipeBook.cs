@@ -6,11 +6,11 @@ public class RecipeBook : MonoBehaviour
 {
     public GameObject recipeBook;
     public LookingAtRecipeBook player;
-     public JenisPenyakit btnNext;
+    public JenisPenyakit btnNext;
     // Start is called before the first frame update
     void Start()
     {
-         player = GameObject.FindGameObjectWithTag("Player").GetComponent<LookingAtRecipeBook>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<LookingAtRecipeBook>();
       
     }
 

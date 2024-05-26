@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: Theme
-    clip: {fileID: 8300000, guid: 17eabc453679dc84684e9089de761a91, type: 3}
+    clip: {fileID: 8300000, guid: 48daf601e4466a14e9ea5c878c0dbde4, type: 3}
   - name: Game
     clip: {fileID: 8300000, guid: 22aa2b4dc8a28a244ab056933a7aa4e3, type: 3}
   sfxSounds:
