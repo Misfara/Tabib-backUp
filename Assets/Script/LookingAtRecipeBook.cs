@@ -9,7 +9,7 @@ public class LookingAtRecipeBook : MonoBehaviour
     bool canClosed = false;
     public GameObject recipeBook;
 
-    public GameObject Fever ,Cold,Cough,SoreThroat,Furuncle,Constipation,TineaVersicolor,Smallpox;
+    // public GameObject Fever ,Cold,Cough,SoreThroat,Furuncle,Constipation,TineaVersicolor,Smallpox;
     
     void Awake()
     {
@@ -24,14 +24,14 @@ public class LookingAtRecipeBook : MonoBehaviour
             if (!recipeBook.activeInHierarchy )
             {
                 recipeBook.SetActive(true);
-                Fever.SetActive(true);
-                 Cold.SetActive(false);
-                 Cough.SetActive(false);
-                SoreThroat.SetActive(false);
-                Furuncle.SetActive(false);
-                Constipation.SetActive(false);
-                TineaVersicolor.SetActive(false);
-                Smallpox.SetActive(false);
+                // Fever.SetActive(true);
+                //  Cold.SetActive(false);
+                //  Cough.SetActive(false);
+                // SoreThroat.SetActive(false);
+                // Furuncle.SetActive(false);
+                // Constipation.SetActive(false);
+                // TineaVersicolor.SetActive(false);
+                // Smallpox.SetActive(false);
                 canClosed = true;
    
             }

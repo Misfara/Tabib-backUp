@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using System.Threading.Tasks;
 
 public class PauseSetting : MonoBehaviour
 {
     public GameObject PausePanel;
     public GameObject Pause;
     public GameObject SoundPanel;
+    
+    [Header("Animation")]
+    [SerializeField] RectTransform PausePanelRect;
+    [SerializeField] float bottomPosY, middlePosY;
+    [SerializeField] float tweenDuration;
+    [SerializeField] CanvasGroup canvasGroup; //Dark panel canvas group
 
     public void PauseButton()
     {
@@ -16,10 +24,12 @@ public class PauseSetting : MonoBehaviour
         PausePanel.SetActive(true);
         Pause.SetActive(true);
         AudioManager.Instance.PlaySFX("Button");
+        PausePanelIntro();
     }
 
-    public void ResumeClicked()
+    public async void ResumeClicked()
     {
+        await PausePanelOutro();
         Time.timeScale = 1f;
         PausePanel.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
@@ -55,5 +65,16 @@ public class PauseSetting : MonoBehaviour
         AudioManager.Instance.PlaySFX("Button");
     }
 
+    void PausePanelIntro()
+    {
+        canvasGroup.DOFade(1, tweenDuration).SetUpdate(true);
+        PausePanelRect.DOAnchorPosY(middlePosY,tweenDuration).SetUpdate(true);
+    }
+
+    async Task PausePanelOutro()
+    {
+        canvasGroup.DOFade(0, tweenDuration).SetUpdate(true);
+        await PausePanelRect.DOAnchorPosY(bottomPosY,tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
+    }
 
 }

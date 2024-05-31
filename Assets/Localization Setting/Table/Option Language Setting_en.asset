@@ -34,6 +34,38 @@ MonoBehaviour:
     m_Localized: Supporting Source
     m_Metadata:
       m_Items: []
+  - m_Id: 399978133307392
+    m_Localized: player movement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 400185390645248
+    m_Localized: starting and ending conversations with an NPC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 400303145730048
+    m_Localized: opened the recipe book
+    m_Metadata:
+      m_Items: []
+  - m_Id: 400552409022464
+    m_Localized: dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407025906204672
+    m_Localized: Consultant Mentor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407254034399232
+    m_Localized: Game Designer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407358816501760
+    m_Localized: Game Artist Developer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407570305892352
+    m_Localized: Game programming Developer
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

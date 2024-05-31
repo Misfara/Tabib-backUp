@@ -6,6 +6,7 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
+    // UIController uIController;
     public static AudioManager Instance;
 
     public Sound[] musicSounds, sfxSounds;

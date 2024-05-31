@@ -34,6 +34,38 @@ MonoBehaviour:
     m_Localized: Sumber Pendukung
     m_Metadata:
       m_Items: []
+  - m_Id: 399978133307392
+    m_Localized: Pergerakan pemain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 400185390645248
+    m_Localized: memulai dan mengakhiri percakapan dengan NPC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 400303145730048
+    m_Localized: membuka buku resep
+    m_Metadata:
+      m_Items: []
+  - m_Id: 400552409022464
+    m_Localized: berlari
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407025906204672
+    m_Localized: Mentor konsultan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407254034399232
+    m_Localized: perancang permainan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407358816501760
+    m_Localized: pengembang seni permainan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407570305892352
+    m_Localized: pengembang pemrograman permainan
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
