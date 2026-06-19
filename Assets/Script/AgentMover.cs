@@ -45,17 +45,13 @@ public class AgentMover : MonoBehaviour
   
 
     
-    public void FixedUpdate()
-    {   
-        if( MovementInput.magnitude > 0 && currentSpeed == 0)
-        {
+    public void FixedUpdate(){
+
+        
+        if( MovementInput.magnitude > 0 && currentSpeed == 0){
             oldMovementInput=MovementInput;
-            currentSpeed += acceleration * maxSpeed * Time.deltaTime;
-            AudioManager.Instance.PlaySFX("Running");
-            
-        }
-        else
-        {
+            currentSpeed += acceleration * maxSpeed*Time.deltaTime;
+        } else{
             currentSpeed -= deacceleration * maxSpeed * Time.deltaTime;
         }
         currentSpeed = Mathf.Clamp(currentSpeed,0,maxSpeed);
@@ -63,14 +59,11 @@ public class AgentMover : MonoBehaviour
   
     }
 
-    public void Dash()
-    {
-        if( MovementInput.magnitude > 0 && currentSpeed == 0)
-        {
+    public void Dash(){
+        if( MovementInput.magnitude > 0 && currentSpeed == 0){
             oldMovementInput=MovementInput;
             currentSpeed += acceleration * maxSpeed*Time.deltaTime;
-        } else
-        {
+        } else{
             currentSpeed -= deacceleration * maxSpeed * Time.deltaTime;
         }
         currentSpeed = Mathf.Clamp(currentSpeed,0,maxSpeed);
@@ -78,8 +71,10 @@ public class AgentMover : MonoBehaviour
   
         
         if(dashLocked)
-            return;
+        return;
+       
         
+       
         rb.MovePosition (rb.position + rb.velocity.normalized * dashPower );
         
         animator.SetTrigger("Dash");
@@ -89,8 +84,7 @@ public class AgentMover : MonoBehaviour
         StartCoroutine(DelayDash());
     }
 
-    private IEnumerator DelayDash()
-    {
+    private IEnumerator DelayDash(){
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
         yield return new WaitForSeconds(delay);

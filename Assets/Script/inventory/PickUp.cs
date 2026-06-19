@@ -3,28 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PickUp : MonoBehaviour//, IDataPersistence
+public class PickUp : MonoBehaviour
 {
-//    [ContextMenu("Generate guid for id")]
-//     private void GenerateGuid()
-//     {
-//         id = System.Guid.NewGuid().ToString();
-//     }
-    private Inventory inventory;
+   private Inventory inventory;
 
 
-    public GameObject itemButton;
+   public GameObject itemButton;
 
-    private void Start()
-    {
+    private void Start(){
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
-        {
+        if(other.CompareTag("Player")){
             for ( int i= 0 ; i <inventory.slots.Length;i++)
             {
                 if(inventory.isFull[i]== false)
@@ -35,24 +28,9 @@ public class PickUp : MonoBehaviour//, IDataPersistence
                     break;
                 }
             }
-            AudioManager.Instance.PlaySFX("Pick Up Item");
         }
-    }
-    // public void LoadData(GameData data)
-    // {
-    //     data.itemButton.TryGetValue(id, player);
-    //     if(player)
-    //     {
-    //         itemButton.gameObject.SetActive(false);
-    //     }
-    // }
+       
 
-    // public void SaveData(ref GameData data)
-    // {
-    //     if (data.itemButton.ContainsKey(id))
-    //     {
-    //         data.itemButton.Remove(id);
-    //     }
-    //     data.itemButton.Add(id, player);
-    // }
+    
+}
 }
